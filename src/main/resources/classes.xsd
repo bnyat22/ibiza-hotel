@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.baeldung.com/springsoap/gen"
+           targetNamespace="http://www.baeldung.com/springsoap/gen" elementFormDefault="qualified">
+
+    <xs:element name="getHotelRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:int"/>
+                <xs:element name="pass" type="xs:string"/>
+                <xs:element name="dateA" type="xs:string"/>
+                <xs:element name="dateD" type="xs:string"/>
+                <xs:element name="nombreP" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="getReservationRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="agence_id" type="xs:int"/>
+                <xs:element name="pass" type="xs:string"/>
+                <xs:element name="dateA" type="xs:string"/>
+                <xs:element name="offre_id" type="xs:string"/>
+                <xs:element name="client" type="tns:client"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getHotelResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="list" type="tns:bookList" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getReservationResponse">
+        <xs:complexType>
+            <xs:sequence>
+           <xs:element name="confirmation" type="xs:string"></xs:element>
+           <xs:element name="error" type="xs:string"></xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="client">
+        <xs:sequence>
+            <xs:element name="id" type="xs:int"/>
+            <xs:element name="nom" type="xs:string"/>
+            <xs:element name="creditCard" type="tns:creditCard"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="creditCard">
+        <xs:sequence>
+            <xs:element name="nom" type="xs:string"/>
+            <xs:element name="numero" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+        <xs:complexType name="bookList">
+            <xs:sequence>
+                <xs:element name="offre_id" type="xs:string"/>
+                <xs:element name="type" type="xs:string"/>
+                <xs:element name="date_dispo" type="xs:string"/>
+                <xs:element name="prix" type="xs:double"/>
+                <xs:element name="image" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+
+
+    <xs:complexType name="hotel">
+        <xs:sequence>
+            <xs:element name="nom" type="xs:string"/>
+            <xs:element name="etoile" type="xs:int"/>
+            <xs:element name="adresse" type="tns:adresse"/>
+            <xs:element name="chambres" type="tns:chambre" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="adresse">
+        <xs:sequence>
+            <xs:element name="pays" type="xs:string"/>
+            <xs:element name="ville" type="xs:string"/>
+            <xs:element name="rue" type="xs:string"/>
+            <xs:element name="codepostal" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="chambre">
+        <xs:sequence>
+            <xs:element name="numero" type="xs:string"/>
+            <xs:element name="type" type="xs:string"/>
+            <xs:element name="description" type="xs:string"/>
+            <xs:element name="disponible" type="xs:boolean"/>
+            <xs:element name="prix" type="xs:double"/>
+            <xs:element name="personnes" type="xs:int"/>
+            <xs:element name="datedispo" type="xs:string"/>
+            <xs:element name="image" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
